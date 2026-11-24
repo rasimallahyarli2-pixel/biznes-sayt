@@ -12,7 +12,7 @@
     .badge { background: #16a34a; color: #fff; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px; }
     .edit-toggle { background: #1e293b; color: #38bdf8; border: 1px solid #334155; padding: 7px 12px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; }
     .edit-toggle:hover { background: #334155; }
-    
+
     .panel { background: #111827; border: 1px solid #334155; border-radius: 16px; padding: 16px; margin-bottom: 20px; display: none; }
     .panel.open { display: block; }
     .panel h3 { font-size: 16px; margin-bottom: 12px; color: #38bdf8; }
@@ -23,4 +23,191 @@
     .save-btn { width: 100%; background: #2563eb; color: #fff; border: none; padding: 11px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 6px; }
     .share-box { margin-top: 12px; background: #0f172a; border: 1px dashed #38bdf8; padding: 10px; border-radius: 10px; display: none; }
     .share-box p { font-size: 12px; color: #cbd5e1; margin-bottom: 6px; }
-    .copy-btn { width: 100%; background: #0284c7;
+    .copy-btn { width: 100%; background: #0284c7; color: #fff; border: none; padding: 8px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+    h1 { font-size: 28px; line-height: 1.25; font-weight: 800; margin-bottom: 10px; }
+    .subtitle { color: #cbd5e1; font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
+    .card { background: #111827; border: 1px solid #1e293b; border-radius: 14px; padding: 16px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .card-info h2 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .card-info p { font-size: 13px; color: #94a3b8; }
+    .price { color: #4ade80; font-weight: 800; font-size: 15px; white-space: nowrap; }
+    .wa-btn { display: block; width: 100%; text-align: center; background: #22c55e; color: #052e16; font-weight: 800; font-size: 16px; padding: 15px; border-radius: 14px; text-decoration: none; margin-top: 18px; }
+    .wa-btn:hover { background: #16a34a; color: #fff; }
+    .footer { text-align: center; color: #64748b; font-size: 12px; margin-top: 18px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <span class="badge" id="viewBadge">Sürətli Xidmət • Keyfiyyətli İş</span>
+      <button class="edit-toggle" id="toggleBtn" type="button">✏️ Öz Səhifəni Yarat</button>
+    </div>
+
+    <div class="panel" id="editorPanel">
+      <h3>Öz Məlumatlarını Yaz</h3>
+      <div class="field">
+        <label for="inTitle">Adınız və Peşəniz</label>
+        <input type="text" id="inTitle" placeholder="Məs: Orxan Usta — Elektrik & Təmir" />
+      </div>
+      <div class="field">
+        <label for="inSub">Şəhər / Qısa Məlumat</label>
+        <input type="text" id="inSub" placeholder="Məs: Bakı və ətrafı. Yerində baxış və zəmanətli iş." />
+      </div>
+      <div class="field">
+        <label for="inPhone">WhatsApp Nömrəniz (050... və ya 99450...)</label>
+        <input type="tel" id="inPhone" placeholder="050 123 45 67" />
+      </div>
+      <div class="field">
+        <label for="inS1">Xidmət 1 və Qiyməti</label>
+        <div class="row">
+          <input type="text" id="inS1" placeholder="İlkin Baxış və Diaqnostika" />
+          <input type="text" id="inP1" placeholder="15 AZN" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="inS2">Xidmət 2 və Qiyməti</label>
+        <div class="row">
+          <input type="text" id="inS2" placeholder="Standart Təmir / Quraşdırma" />
+          <input type="text" id="inP2" placeholder="30 AZN-dən" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="inS3">Xidmət 3 və Qiyməti</label>
+        <div class="row">
+          <input type="text" id="inS3" placeholder="Aylıq Baxım və Dəstək" />
+          <input type="text" id="inP3" placeholder="20 AZN / ay" />
+        </div>
+      </div>
+      <button class="save-btn" id="saveBtn" type="button">Səhifəmi Yenilə və Link Yarat</button>
+
+      <div class="share-box" id="shareBox">
+        <p>Sənin fərdi linkin hazırdır! Müştərilərə bu linki göndər:</p>
+        <button class="copy-btn" id="copyBtn" type="button">📋 Şəxsi Linkimi Kopyala</button>
+      </div>
+    </div>
+
+    <h1 id="viewTitle">Peşəkar Usta & Xidmət</h1>
+    <p class="subtitle" id="viewSub">Yerində baxış, dürüst qiymət və vaxtında təhvil. Sifariş üçün birbaşa WhatsApp-a yazın.</p>
+
+    <div class="card">
+      <div class="card-info">
+        <h2 id="viewS1">İlkin Baxış və Diaqnostika</h2>
+        <p>Problemin yerində yoxlanılması və qiymət təklifi</p>
+      </div>
+      <div class="price" id="viewP1">15 AZN</div>
+    </div>
+
+    <div class="card">
+      <div class="card-info">
+        <h2 id="viewS2">Standart Təmir / Quraşdırma</h2>
+        <p>Gündəlik nasazlıqların aradan qaldırılması</p>
+      </div>
+      <div class="price" id="viewP2">30 AZN-dən</div>
+    </div>
+
+    <div class="card">
+      <div class="card-info">
+        <h2 id="viewS3">Aylıq Baxım və Dəstək</h2>
+        <p>Daimi müştərilər üçün prioritet xidmət</p>
+      </div>
+      <div class="price" id="viewP3">20 AZN / ay</div>
+    </div>
+
+    <a class="wa-btn" id="waLink" href="https://wa.me/994500000000" target="_blank" rel="noopener noreferrer">WhatsApp-da Əlaqə Saxla</a>
+    <div class="footer">© 2026 Usta & Xidmət Platforması • Öz səhifəni pulsuz yarat</div>
+  </div>
+
+  <script>
+    let generatedUrl = window.location.href;
+
+    function togglePanel() {
+      document.getElementById('editorPanel').classList.toggle('open');
+    }
+
+    function formatPhone(raw) {
+      let digits = (raw || '').replace(/\D/g, '');
+      if (digits.startsWith('0')) digits = '994' + digits.slice(1);
+      if (!digits.startsWith('994') && digits.length === 9) digits = '994' + digits;
+      return digits || '994500000000';
+    }
+
+    function renderData(data) {
+      if (data.title) document.getElementById('viewTitle').textContent = data.title;
+      if (data.sub) document.getElementById('viewSub').textContent = data.sub;
+      if (data.s1) document.getElementById('viewS1').textContent = data.s1;
+      if (data.p1) document.getElementById('viewP1').textContent = data.p1;
+      if (data.s2) document.getElementById('viewS2').textContent = data.s2;
+      if (data.p2) document.getElementById('viewP2').textContent = data.p2;
+      if (data.s3) document.getElementById('viewS3').textContent = data.s3;
+      if (data.p3) document.getElementById('viewP3').textContent = data.p3;
+
+      const cleanPhone = formatPhone(data.phone || '');
+      const text = encodeURIComponent(`Salam! "${data.title || 'Xidmət'}" səhifənizdən yazıram, sifariş vermək istəyirəm.`);
+      document.getElementById('waLink').href = `https://wa.me/${cleanPhone}?text=${text}`;
+    }
+
+    function applyCustomData() {
+      const data = {
+        title: document.getElementById('inTitle').value.trim(),
+        sub: document.getElementById('inSub').value.trim(),
+        phone: document.getElementById('inPhone').value.trim(),
+        s1: document.getElementById('inS1').value.trim(),
+        p1: document.getElementById('inP1').value.trim(),
+        s2: document.getElementById('inS2').value.trim(),
+        p2: document.getElementById('inP2').value.trim(),
+        s3: document.getElementById('inS3').value.trim(),
+        p3: document.getElementById('inP3').value.trim()
+      };
+
+      renderData(data);
+
+      const params = new URLSearchParams();
+      Object.keys(data).forEach(k => { if (data[k]) params.set(k, data[k]); });
+      const queryString = params.toString();
+      generatedUrl = queryString
+        ? `${window.location.origin}${window.location.pathname}?${queryString}`
+        : `${window.location.origin}${window.location.pathname}`;
+
+      try {
+        window.history.replaceState({}, '', generatedUrl);
+      } catch (e) {}
+
+      document.getElementById('shareBox').style.display = 'block';
+    }
+
+    function copyShareLink() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(generatedUrl).then(() => {
+          alert('Şəxsi link kopyalandı! İndi WhatsApp və ya Instagram-da paylaşa bilərsiniz.');
+        }).catch(() => {
+          prompt('Linki buradan kopyala:', generatedUrl);
+        });
+      } else {
+        prompt('Linki buradan kopyala:', generatedUrl);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('toggleBtn').addEventListener('click', togglePanel);
+      document.getElementById('saveBtn').addEventListener('click', applyCustomData);
+      document.getElementById('copyBtn').addEventListener('click', copyShareLink);
+
+      const params = new URLSearchParams(window.location.search);
+      if ([...params.keys()].length > 0) {
+        const data = {
+          title: params.get('title') || '',
+          sub: params.get('sub') || '',
+          phone: params.get('phone') || '',
+          s1: params.get('s1') || '',
+          p1: params.get('p1') || '',
+          s2: params.get('s2') || '',
+          p2: params.get('p2') || '',
+          s3: params.get('s3') || '',
+          p3: params.get('p3') || ''
+        };
+        renderData(data);
+      }
+    });
+  </script>
+</body>
+</html>
